@@ -1,0 +1,28 @@
+<mujoco model="garment_vla">
+    <option gravity="0 0 -9.81" timestep="0.01"/>
+    
+    <worldbody>
+        <light pos="0 0 1.5" dir="0 0 -1" diffuse="1 1 1"/>
+        
+        <camera name="overhead_cam" pos="0 0 1.5" zaxis="0 0 1" mode="fixed"/>
+        
+        <geom name="table" type="box" size="0.5 0.5 0.05" pos="0 0 0" rgba="0.8 0.8 0.8 1" friction="1 0.005 0.0001"/>
+        
+        <!-- Deformable Garment -->
+        <!-- Note: type="cloth" is deprecated in Mujoco 3+, using type="grid" or "shell" per engine -->
+        <flexcomp type="grid" name="garment" count="9 9 1" spacing=".05 .05 .05" pos="0 0 0.1" radius="0.01" rgba="0.2 0.2 0.8 1" mass="0.1"/>
+        
+        <body name="manipulator" pos="0 0 0.5">
+            <joint name="x_joint" type="slide" axis="1 0 0" damping="10"/>
+            <joint name="y_joint" type="slide" axis="0 1 0" damping="10"/>
+            <joint name="z_joint" type="slide" axis="0 0 1" damping="10"/>
+            <geom type="sphere" size="0.03" rgba="1 0 0 1"/>
+        </body>
+    </worldbody>
+    
+    <actuator>
+        <position joint="x_joint" name="act_x" kp="100"/>
+        <position joint="y_joint" name="act_y" kp="100"/>
+        <position joint="z_joint" name="act_z" kp="100"/>
+    </actuator>
+</mujoco>

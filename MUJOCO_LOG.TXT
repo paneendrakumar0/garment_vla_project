@@ -1,0 +1,3 @@
+WARNING Thu Oct  8 00:27:11 2026: flex 'garment' is not rigid and has no equality constraints or passive forces
+Element name 'garment', id 0
+
